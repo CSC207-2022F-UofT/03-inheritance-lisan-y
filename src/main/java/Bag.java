@@ -11,7 +11,7 @@ public abstract class Bag {
     private String color;
     private int numberOfContents;
     private int capacity;
-    private String[] contents = new String[capacity];
+    private String[] contents;
     /*
      * TODO: Create the following private instance variables
      *       - a String named color
@@ -22,6 +22,8 @@ public abstract class Bag {
     public Bag(String color, int capacity){
         this.color = color;
         this.capacity = capacity;
+        this.numberOfContents = 0;
+        this.contents = new String[this.capacity];
     }
     /*
      * TODO: Create a constructor that takes two arguments:
@@ -74,11 +76,11 @@ public abstract class Bag {
      *       and false otherwise.
      */
     public String popItem(){
-        for (int i = capacity; i>0; i--){
-            if (contents[i] != null){
-                String lastItem = contents[i];
-                contents[i] = null;
-                numberOfContents -= 1;
+        for (int i = this.capacity-1; i>0; i--){
+            if (this.contents[i] != null){
+                String lastItem = this.contents[i];
+                this.contents[i] = null;
+                this.numberOfContents -= 1;
                 return lastItem;
             }
         }
