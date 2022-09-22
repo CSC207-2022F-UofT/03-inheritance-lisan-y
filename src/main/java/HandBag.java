@@ -30,9 +30,7 @@ public class HandBag extends Bag{
     public void enhance() {
         int increaseBy = 1;
         super.increaseCapacity(increaseBy);
-        /* TODO: Implement this method.
-         *       You may want to use the increaseCapacity() method that was
-         *       implemented in Bag.
+        /*
          *
          * To call a method defined in a parent, you use super.method_name(...)
          */

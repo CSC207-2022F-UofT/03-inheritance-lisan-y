@@ -38,9 +38,6 @@ public class CrossbodyBag extends Bag {
     }
 }
 /*
- * TODO: Create a public class named CrossbodyBag which is a subclass of Bag
- *       In addition to the attributes in Bag, the CrossbodyBag should have an
- *       attribute named "numberOfStraps".
  *
  *       The constructor for CrossbodyBag should take the following parameters
  *       in order:
