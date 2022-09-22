@@ -5,7 +5,13 @@
  * 1. Introduction to Java helpful.
  */
 
+import java.lang.reflect.Array;
+
 public abstract class Bag {
+    private String color;
+    private int numberOfContents;
+    private int capacity;
+    private String[] contents = new String[capacity];
     /*
      * TODO: Create the following private instance variables
      *       - a String named color
@@ -13,10 +19,10 @@ public abstract class Bag {
      *       - an int named capacity
      *       - an array of Strings named contents
      */
-
-
-
-
+    public Bag(String color, int capacity){
+        this.color = color;
+        this.capacity = capacity;
+    }
     /*
      * TODO: Create a constructor that takes two arguments:
      *       - a String representing the Bag's colour
@@ -26,10 +32,15 @@ public abstract class Bag {
      * be empty (e.g. numberOfContents is 0 and an empty String array for
      * its contents.)
      */
-
-
-
-
+    public String getColor(){
+        return this.color;
+    }
+    public int getNumberOfContents(){
+        return this.numberOfContents;
+    }
+    public int getCapacity(){
+        return this.capacity;
+    }
     /*
      * TODO: Create a variety of 'getter' functions.
      *       These should be named:
@@ -37,19 +48,21 @@ public abstract class Bag {
      *           - getNumberOfContents
      *           - getCapacity
      */
-
-
-
-
+    public void setColor(String color){
+        this.color = color;
+    }
     /*
      * TODO: Create a setter function called setColor which sets the
      *       color of this bag to the given color.
      */
-
-
-
-
-
+    public boolean addItem(String item){
+        if (this.numberOfContents < this.capacity){
+            this.contents[numberOfContents] = item;
+            this.numberOfContents += 1;
+            return true;
+        }
+        return false;
+    }
     /*
      * TODO: Create a method called addItem that takes in a String
      *       representing an item in the Bag.
@@ -60,11 +73,17 @@ public abstract class Bag {
      *       This method should return true if the item was added
      *       and false otherwise.
      */
-
-
-
-
-
+    public String popItem(){
+        for (int i = capacity; i>0; i--){
+            if (contents[i] != null){
+                String lastItem = contents[i];
+                contents[i] = null;
+                numberOfContents -= 1;
+                return lastItem;
+            }
+        }
+        return null;
+    }
     /**
      * TODO: Create a method called popItem that returns a String.
      *       The string should be the last item added to this Bag
@@ -87,7 +106,13 @@ public abstract class Bag {
      */
     public void increaseCapacity(int n) {
         // TODO: Implement this method.
-
+        int oldCapacity = this.capacity;
+        this.capacity += n;
+        String[] oldContents = this.contents.clone();
+        this.contents = new String[this.capacity];
+        for (int i=0; i<oldCapacity; i++){
+            this.contents[i] = oldContents[i];
+        }
     }
 
     /**
